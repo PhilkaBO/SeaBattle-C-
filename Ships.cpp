@@ -227,7 +227,233 @@ void Ships::DeletePos(int x, int y)
 }
 
 
+void Ships::RandomSetShip(int type, int num)
+{
+    int numtemp = num;
+    int typetemp = type;
+    int randnum;
+    int Vect;
+    int size;
+    int randnumtemp;
+    int x, y;
 
+    randnum = AviablePos[rand() % AviablePos.size()];
+    randnumtemp = randnum;
+
+    Vect = rand() % 2;
+
+    if (Vect == 0)
+    {
+        if (CheckVectRight(randnum, type) == true)
+        {
+            size = ShipsSize();
+
+            while (!(typetemp == 0)) //Установка
+            {
+                x = randnumtemp % 10;
+                y = randnumtemp / 10;
+                SetCoord(size, x, y);
+
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + (x - 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + (x - 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + (x - 1)), AviablePos.end());
+
+                randnumtemp++;
+                typetemp--;
+            }
+            num--;
+            if (!(num == 0))
+            {
+                RandomSetShip(type, num);
+            }
+        }
+        else if (CheckVectUp(randnum, type) == true) {
+            size = ShipsSize();
+
+            while (!(typetemp == 0)) //Установка
+            {
+                x = randnumtemp % 10;
+                y = randnumtemp / 10;
+
+                SetCoord(size, x, y);
+
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + (x - 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + (x - 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + (x - 1)), AviablePos.end());
+
+                randnumtemp = randnumtemp - 10;
+                typetemp--;
+            }
+            num--;
+            if (!(num == 0))
+            {
+                RandomSetShip(type, num);
+            }
+        }
+        else
+        {
+            if (!(num == 0))
+            {
+                RandomSetShip(type, num);
+            }
+        }
+    }
+
+    if (Vect == 1)
+    {
+        if (CheckVectUp(randnum, type) == true)
+        {
+            size = ShipsSize();
+
+            while (!(typetemp == 0)) //Установка
+            {
+                x = randnumtemp % 10;
+                y = randnumtemp / 10;
+
+                SetCoord(size, x, y);
+
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + (x - 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + (x - 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + (x - 1)), AviablePos.end());
+
+                randnumtemp = randnumtemp - 10;
+                typetemp--;
+            }
+            num--;
+            if (!(num == 0))
+            {
+                RandomSetShip(type, num);
+            }
+        }
+        else if (CheckVectRight(randnum, type) == true) {
+            size = ShipsSize();
+
+            while (!(typetemp == 0)) //Установка
+            {
+                x = randnumtemp % 10;
+                y = randnumtemp / 10;
+                SetCoord(size, x, y);
+
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + x), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), y * 10 + (x - 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + (x - 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y - 1) * 10 + (x + 1)), AviablePos.end());
+                AviablePos.erase(std::remove(AviablePos.begin(), AviablePos.end(), (y + 1) * 10 + (x - 1)), AviablePos.end());
+
+                randnumtemp++;
+                typetemp--;
+            }
+            num--;
+            if (!(num == 0))
+            {
+                RandomSetShip(type, num);
+            }
+        }
+        else
+        {
+            if (!(num == 0))
+            {
+                RandomSetShip(type, num);
+            }
+        }
+    }
+}
+
+bool Ships::FindRand(int num)
+{
+    for (int i = 0; i < AviablePos.size(); i++)
+    {
+        if(num == AviablePos[i]){
+            return true;
+        }
+    }
+    return false;
+}
+
+void Ships::RandomSet()
+{
+    //Oчистка расстановки
+    for (int i = 0; i < 10; i++)
+    {
+        ClearShip(i);
+    }
+
+    //Очистка вектора допустимых координат
+    AviablePos.clear();
+
+    for (int i = 0; i < 100; i++)//Заполнение вектора допустимых координат
+    {
+        AviablePos.push_back(i);
+    }
+
+    //Генерация расстановки
+    RandomSetShip(4, 1);
+    RandomSetShip(3, 2);
+    RandomSetShip(2, 3);
+    RandomSetShip(1, 4);
+
+
+}
+
+bool Ships::CheckVectUp(int randnum, int type)
+{
+    int randtemp = randnum - 10;
+    while (!(type - 1 == 0))
+    {
+        if (!(FindRand(randtemp))) 
+        {
+            return false;
+        }
+        
+        randtemp = randtemp - 10;
+        type--;
+    }
+    return true;
+}
+
+bool Ships::CheckVectRight(int randnum, int type)
+{
+    int randtemp = randnum + 1;
+
+    if ((randnum / 10) == ((randnum + type - 1) / 10)) {
+        while (!(type - 1 == 0))
+        {
+            if (!(FindRand(randtemp))) 
+            {
+                return false;
+            }
+            randtemp++;
+            type--;
+        }
+        return true;
+    }
+    else {
+        return false;
+    }
+    
+}
 
 
 int Ships::GetX(int i, int k)
