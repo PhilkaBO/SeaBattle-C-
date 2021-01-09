@@ -20,7 +20,6 @@ class GameScreen
 public:
 
 	int GameDraw(RenderWindow& window, Ships& myShip, Ships& enemyShips, int Mode);
-
 	void IsKill(int x, int y, Ships& Ship);
 
 	int II(Ships& myShip);
