@@ -186,6 +186,48 @@ bool Ships::CheckShip(int i)//Не трогай оно работает
     }
 }
 
+bool Ships::FindAround(int i, int x, int y)
+{
+    for (int k = 0; k < GetSizeShip(i); i++)
+    {
+        if (GetX(i, k) == x && GetY(i, k) == y) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int Ships::FindPos(int x, int y)
+{
+    for (int i = 0; i < 10; i++)
+    {
+        for (int k = 0; k < ships[i].GetSizeShip(); k++)
+        {
+            if (ships[i].GetX(k) == x && ships[i].GetY(k) == y)
+            {
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+
+void Ships::DeletePos(int x, int y)
+{
+    for (int i = 0; i < 10; i++)
+    {
+        for (int k = 0; k < ships[i].GetSizeShip(); k++)
+        {
+            if (ships[i].GetX(k) == x && ships[i].GetY(k) == y)
+            {
+                ships[i].ClearPosIdex(k);
+            }
+        }
+    }
+}
+
+
+
 
 
 int Ships::GetX(int i, int k)
