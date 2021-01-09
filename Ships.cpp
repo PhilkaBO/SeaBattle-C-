@@ -59,6 +59,7 @@ void OneShip::ClearPosIdex(int i)
 {
     Position.erase(Position.begin() + i);
 }
+
 bool Ships::FindCoord(int i, int x, int y)//не трогай заебал
 {
     bool result = true;
@@ -225,7 +226,6 @@ void Ships::DeletePos(int x, int y)
         }
     }
 }
-
 
 void Ships::RandomSetShip(int type, int num)
 {
@@ -455,7 +455,6 @@ bool Ships::CheckVectRight(int randnum, int type)
     
 }
 
-
 int Ships::GetX(int i, int k)
 {
     return ships[i].GetX(k);
@@ -465,6 +464,7 @@ int Ships::GetY(int i, int k)
 {
     return ships[i].GetY(k);
 }
+
 void Ships::SetCoord(int i, int x, int y)
 {
     if (FindCoord(i, x, y)) 
@@ -475,14 +475,17 @@ void Ships::SetCoord(int i, int x, int y)
         cout << "lox";
     }
 }
+
 void Ships::ClearPosition(int numship, int index)
 {
     ships[numship].ClearPosIdex(index);
 }
+
 int Ships::GetSizeShip(int i)
 {
     return ships[i].GetSizeShip();
 }
+
 int Ships::CheckType(int size)
 {
     int result = 0;
@@ -494,6 +497,7 @@ int Ships::CheckType(int size)
     }
     return result;
 }
+
 void Ships::Print()
 {
     for (int i = 0; i < 10; i++) {
@@ -502,10 +506,12 @@ void Ships::Print()
         cout << endl;
     }
 }
+
 void Ships::ClearShip(int i)
 {
     ships[i].ClearShip();
 }
+
 int Ships::ShipsSize()
 {
     for (int i = 0; i < 10; i++) {
