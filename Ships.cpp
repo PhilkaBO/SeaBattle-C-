@@ -87,3 +87,14 @@ int Ships::GetSizeShip(int i)
 {
     return ships[i].GetSizeShip();
 }
+int Ships::CheckType(int size)
+{
+    int result = 0;
+    for (int i = 0; i < 10; i++) {
+        if (size == ships[i].GetSizeShip()) 
+        {
+            result++;
+        }
+    }
+    return result;
+}
