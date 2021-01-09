@@ -110,3 +110,12 @@ void Ships::ClearShip(int i)
 {
     ships[i].ClearShip();
 }
+int Ships::ShipsSize()
+{
+    for (int i = 0; i < 10; i++) {
+        if (ships[i].GetSizeShip() == 0)
+        {
+            return i;
+        }
+    }
+}
