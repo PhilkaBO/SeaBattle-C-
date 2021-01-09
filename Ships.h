@@ -41,4 +41,5 @@ public:
     int GetX(int i, int k);
     int GetY(int i, int k);
     void ClearPosition(int numship, int index);
+    void SetCoord(int i, int x, int y);
 };

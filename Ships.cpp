@@ -69,3 +69,13 @@ int Ships::GetY(int i, int k)
 {
     return ships[i].GetY(k);
 }
+void Ships::SetCoord(int i, int x, int y)
+{
+    if (FindCoord(i, x, y)) 
+    {
+        ships[i].SetCoord(x, y);
+    }
+    else {
+        cout << "lox";
+    }
+}
