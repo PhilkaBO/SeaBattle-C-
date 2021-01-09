@@ -59,7 +59,6 @@ void OneShip::ClearPosIdex(int i)
 {
     Position.erase(Position.begin() + i);
 }
-
 bool Ships::FindCoord(int i, int x, int y)//не трогай заебал
 {
     bool result = true;
@@ -77,8 +76,115 @@ bool Ships::FindCoord(int i, int x, int y)//не трогай заебал
     return result;
 }
 
+bool Ships::CheckShip(int i)//Не трогай оно работает
+{
+    if (ships[i].GetSizeShip() >= 1 && ships[i].GetSizeShip() <= 4) {
+        switch (ships[i].GetSizeShip())
+        {
+        case 1:
+            if (CheckType(ships[i].GetSizeShip()) > 4) {
+                return false;
+            }
+            break;
+        case 2:
+            if (CheckType(ships[i].GetSizeShip()) > 3) {
+                return false;
+            }
+            break;
+        case 3:
+            if (CheckType(ships[i].GetSizeShip()) > 2) {
+                return false;
+            }
+            break;
+        case 4:
+            if (CheckType(ships[i].GetSizeShip()) > 1) {
+                return false;
+            }
+            break;
+        default:
+            break;
+        }
+        
+        for (int k = 0; k < ships[i].GetSizeShip(); k++) 
+        {
+            if (!FindCoord(i, ships[i].GetX(k), ships[i].GetY(k) - 1)) { return false; }
+            if (!FindCoord(i, ships[i].GetX(k), ships[i].GetY(k) + 1)) { return false; }
+            if (!FindCoord(i, ships[i].GetX(k) - 1, ships[i].GetY(k))) { return false; }
+            if (!FindCoord(i, ships[i].GetX(k) + 1, ships[i].GetY(k))) { return false; }
+            if (!FindCoord(i, ships[i].GetX(k) + 1, ships[i].GetY(k) + 1)) { return false; }
+            if (!FindCoord(i, ships[i].GetX(k) - 1, ships[i].GetY(k) - 1)) { return false; };
+            if (!FindCoord(i, ships[i].GetX(k) - 1, ships[i].GetY(k) + 1)) { return false; };
+            if (!FindCoord(i, ships[i].GetX(k) + 1, ships[i].GetY(k) - 1)) { return false; };
+        }
+        if (ships[i].GetSizeShip() == 1) //Если корабль однопалубный,то он всегда правильный
+            return true;
+        else
+        {
+            if (ships[i].GetSizeShip() > 4 || ships[i].GetSizeShip() < 1) //Если корабль имеет более 4 палуб, то он не правильный
+                return false;
+            else //Если корабль не однопалубный и имеет не более 4 палуб
+            {
+                int tempX = 0;
+                int tempY = 0;
+                for (int k = 0; k < ships[i].GetSizeShip(); k++)//Проверка на горизонтальность/вертикальность
+                {
+                    if (ships[i].GetX(0) != ships[i].GetX(k)) tempX = 1;
+                    if (ships[i].GetY(0) != ships[i].GetY(k)) tempY = 1;
+                }
 
+                if (tempX == 1 && tempY == 1)
+                    return false;
+                else if (tempX == 0) //Расположен вертикально. Проверка на разрывы по Y
+                {
+                    int minY = ships[i].GetY(0);
+                    for (int k = 0; k < ships[i].GetSizeShip(); k++)
+                        if (minY > ships[i].GetY(k)) minY = ships[i].GetY(k);//Поиск минимума
 
+                    int counter = 1;
+                    for (int j = 0; j < ships[i].GetSizeShip(); j++)
+                    {
+                        if (ships[i].GetY(j) == minY + 1)
+                        {
+                            minY++;
+                            counter++;
+                            j = -1;
+                        }
+                    }
+                    if (counter == ships[i].GetSizeShip())
+                        return true;
+                    else
+                        return false;
+                }
+                else if (tempY == 0) //Расположен горизонтально. Проверка на разрывы по X
+                {
+                    int minX = ships[i].GetX(0);
+                    for (int k = 0; k < ships[i].GetSizeShip(); k++)
+                        if (minX > ships[i].GetX(k)) minX = ships[i].GetX(k);//Поиск минимума
+
+                    int counter = 1;
+                    for (int j = 0; j < ships[i].GetSizeShip(); j++)
+                    {
+                        if (ships[i].GetX(j) == minX + 1)
+                        {
+                            minX++;
+                            counter++;
+                            j = -1;
+                        }
+                    }
+                    if (counter == ships[i].GetSizeShip())
+                        return true;
+                    else
+                        return false;
+                }
+
+            }
+        }
+    }
+    else
+    {
+        return false;
+    }
+}
 
 
 
