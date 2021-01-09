@@ -59,3 +59,13 @@ void OneShip::ClearPosIdex(int i)
 {
     Position.erase(Position.begin() + i);
 }
+
+int Ships::GetX(int i, int k)
+{
+    return ships[i].GetX(k);
+}
+
+int Ships::GetY(int i, int k)
+{
+    return ships[i].GetY(k);
+}
