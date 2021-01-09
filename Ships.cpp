@@ -98,3 +98,11 @@ int Ships::CheckType(int size)
     }
     return result;
 }
+void Ships::Print()
+{
+    for (int i = 0; i < 10; i++) {
+        cout << i << "-";
+        ships[i].PrintCoordShips();
+        cout << endl;
+    }
+}
