@@ -19,3 +19,43 @@ void Сoordinates::SetY(int y)
 {
 	this->y = y;
 }
+int OneShip::GetSizeShip()
+{
+	return Position.size();
+}
+
+void OneShip::SetCoord(int x, int y)
+{
+	Сoordinates coord;
+	coord.SetX(x);
+	coord.SetY(y);
+	Position.push_back(coord);
+}
+
+int OneShip::GetX(int i)
+{
+	return Position[i].GetX();
+}
+
+int OneShip::GetY(int i)
+{
+	return Position[i].GetY();
+}
+
+void OneShip::PrintCoordShips()
+{
+	for (int i = 0; i < GetSizeShip(); i++)
+	{
+		cout << Position[i].GetX() << " " << Position[i].GetY() << endl;
+	}
+}
+
+void OneShip::ClearShip()
+{
+    Position.clear();
+}
+
+void OneShip::ClearPosIdex(int i)
+{
+    Position.erase(Position.begin() + i);
+}
