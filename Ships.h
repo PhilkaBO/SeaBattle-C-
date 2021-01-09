@@ -32,6 +32,25 @@ public:
 };
 class Ships
 {
+    private:
+    OneShip ships[10];
+    vector <int> AviablePos;
+public:
+    bool FindCoord(int i, int x, int y);
+    void SetCoord(int i, int x, int y);
+    bool CheckShip(int i);
+    bool FindAround(int i, int x, int y);
+
+    int FindPos(int x, int y);
+    void DeletePos(int x, int y);
+
+
+    void RandomSet();
+private:
+    void RandomSetShip(int type, int num);
+    bool FindRand(int num);
+    bool CheckVectRight(int randnum, int type);
+    bool CheckVectUp(int randnum, int type);
 public:
     int ShipsSize();
     void ClearShip(int i);
