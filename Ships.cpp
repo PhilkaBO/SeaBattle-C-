@@ -79,3 +79,11 @@ void Ships::SetCoord(int i, int x, int y)
         cout << "lox";
     }
 }
+void Ships::ClearPosition(int numship, int index)
+{
+    ships[numship].ClearPosIdex(index);
+}
+int Ships::GetSizeShip(int i)
+{
+    return ships[i].GetSizeShip();
+}
