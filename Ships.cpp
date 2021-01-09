@@ -106,3 +106,7 @@ void Ships::Print()
         cout << endl;
     }
 }
+void Ships::ClearShip(int i)
+{
+    ships[i].ClearShip();
+}
