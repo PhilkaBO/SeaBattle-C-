@@ -30,3 +30,15 @@ public:
     void ClearPosIdex(int i);
 
 };
+class Ships
+{
+public:
+    int ShipsSize();
+    void ClearShip(int i);
+    void Print();
+    int CheckType(int size);
+    int GetSizeShip(int i);
+    int GetX(int i, int k);
+    int GetY(int i, int k);
+    void ClearPosition(int numship, int index);
+};
