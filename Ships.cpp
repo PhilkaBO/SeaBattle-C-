@@ -60,6 +60,28 @@ void OneShip::ClearPosIdex(int i)
     Position.erase(Position.begin() + i);
 }
 
+bool Ships::FindCoord(int i, int x, int y)//не трогай заебал
+{
+    bool result = true;
+
+    for (int k = 0; k < i; k++)
+    {
+        for (int j = 0; j < ships[k].GetSizeShip(); j++)
+        {
+            if (ships[k].GetX(j) == x && ships[k].GetY(j) == y)
+            {
+                result = false;
+            }
+        }
+    }
+    return result;
+}
+
+
+
+
+
+
 int Ships::GetX(int i, int k)
 {
     return ships[i].GetX(k);
